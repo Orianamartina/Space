@@ -15,7 +15,8 @@ const reducer = (state = initialState, action) => {
                 posts: action.payload
             }
 
-
+        default:
+            return state
 
 
 
@@ -25,3 +26,5 @@ const reducer = (state = initialState, action) => {
 
 
 }
+
+export default reducer

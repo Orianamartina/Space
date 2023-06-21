@@ -1,24 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
-import { Route, Switch } from 'react-router';
+import { Routes, Route} from 'react-router-dom';
+import Landing from './components/landing/Landing';
+import NavBar from './components/navbar/NavBar';
 
 function App() {
   return (
     <div className="App">
-      <Switch>
-        
-        <Route exact path= "/">
-
-          //landing
-        </Route>
-        <Route path = "/">
-           //navbar?
-        </Route>
+      <Routes>
+        <Route path = "/app" element={<NavBar/>}/>
+        <Route exact path= "/" element={<Landing/>}/>
+      
+       
+            
         <Route path = "*">
             // page not found 
         </Route>
 
-      </Switch>
+      </Routes>
     </div>
   );
 }
