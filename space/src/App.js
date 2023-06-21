@@ -1,16 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route, useLocation} from 'react-router-dom';
 import Landing from './components/landing/Landing';
 import NavBar from './components/navbar/NavBar';
 
 function App() {
+  const location = useLocation();
   return (
     <div className="App">
+       {(location.pathname !== "/" || location.pathname == "/") && <NavBar />}
       <Routes>
-        <Route path = "/app" element={<NavBar/>}/>
         <Route exact path= "/" element={<Landing/>}/>
-      
        
             
         <Route path = "*">
