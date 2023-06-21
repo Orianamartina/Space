@@ -3,7 +3,7 @@
 
 
 
-export default function News()){
+export default function News(){
     return(
         <div>
             
