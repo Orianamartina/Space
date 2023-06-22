@@ -4,6 +4,7 @@ import { Routes, Route, useLocation} from 'react-router-dom';
 import Landing from './components/landing/Landing';
 import NavBar from './components/navbar/NavBar';
 import News from './components/news/News';
+import Register from './components/register/Register';
 
 function App() {
   const location = useLocation();
@@ -13,7 +14,7 @@ function App() {
       <Routes>
         <Route exact path= "/" element={<Landing/>}/>
         <Route exact path= "/news" element={<News/>}/>
-            
+        <Route path = "/register" element={<Register/>}/>
         <Route path = "*">
             // page not found 
         </Route>

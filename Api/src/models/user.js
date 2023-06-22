@@ -5,7 +5,8 @@ module.exports = (sequelize) => {
     sequelize.define('User',{
         id: {
             type: DataTypes.INTEGER,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true,
         },
         username:{
             type: DataTypes.STRING,
@@ -35,6 +36,10 @@ module.exports = (sequelize) => {
         emailConfirmed:{
             type: DataTypes.BOOLEAN,
             defaultValue: false
+        },
+        token:{
+            type: DataTypes.STRING,
+    
         }
 
     },{timestamps: false})
