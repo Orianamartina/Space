@@ -27,24 +27,20 @@ export default function Login () {
 
         try {
             await dispatch(logInUser(form))
-            localStorage.setItem("token", JSON.stringify(user.token))
-            localStorage.setItem("user", JSON.stringify(user.user))
-      
-            console.log(user)
-            if (user){
-               // window.location.href = '/';
-            }
-          
 
         } catch (error) {
-            setLoginStatus(error.response)
+            setLoginStatus(error.response.data)
         }
-        
+     }    
     
         
+     const setUser = (user) => {
+        localStorage.setItem("token", JSON.stringify(user.token))
+        localStorage.setItem("user", JSON.stringify(user.user))
+        window.location.href = '/';
+     }
        
-       
-    }
+   
     const handleChange = (e) => {
         setForm({
            ...form,
@@ -55,7 +51,8 @@ export default function Login () {
     return (
 
         <div>
-            <form id="Login" onSubmit={handleSubmit}>    
+            {user.token? setUser(user):(
+                <form id="Login" onSubmit={handleSubmit}>    
                 <div>
                     <label>Username</label>
                     <input type="text" name="username" placeholder="Username" onChange={(e) => handleChange(e)} />
@@ -64,7 +61,9 @@ export default function Login () {
                 </div>
                 <button type="submit" >Log In</button>
                 {loginStatus? <h1>{loginStatus}</h1>: <h1></h1>}
-            </form>
+            </form> 
+            )}
+           
             
         </div>
     )
