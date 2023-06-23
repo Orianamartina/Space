@@ -1,7 +1,8 @@
-import { GETPOSTS } from "../actiontypes"
+import { GETPOSTS, LOGIN, REGISTER } from "../actiontypes"
 
 const initialState = {
-    posts: []
+    posts: [],
+    user: {}
 
 }
 
@@ -14,7 +15,15 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 posts: action.payload
             }
-
+        case LOGIN:
+            return {
+                ...state,
+                user: action.payload
+            }  
+        case REGISTER:
+            return  "hola"
+               
+            
         default:
             return state
 

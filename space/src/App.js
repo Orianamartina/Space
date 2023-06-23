@@ -9,10 +9,11 @@ import Landing from './components/landing/Landing';
 import NavBar from './components/navbar/NavBar';
 import News from './components/news/News';
 import Register from './components/register/Register';
+import Login from './components/login/LogIn';
 
 
 
-const Admin = lazy(() => import('./components/admin'))
+const Admin = lazy(() => import('./components/admin/Admin'))
 function App() {
   const location = useLocation();
   return (
@@ -22,17 +23,18 @@ function App() {
         <Route exact path= "/" element={<Landing/>}/>
         <Route exact path= "/news" element={<News/>}/>
         <Route path = "/register" element={<Register/>}/>
+        <Route path='/login' element={<Login />} />
         <Route path = "/admin" element ={
             <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => Navigate("/") }>
                           
                 <Suspense>
                     <Admin />
                 </Suspense>
-            </ErrorBoundary > }
-         
-        <Route path = "*">
+            </ErrorBoundary > } />
+       
+        <Route path = "*"/>
             // page not found 
-        </Route>
+        
 
       </Routes>
     </div>

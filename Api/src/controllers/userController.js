@@ -46,12 +46,8 @@ module.exports = {
         const {username, password} = req.body
 
         if (!username || !password){
-            return res.status(400).json(
-                {
-                    "success": false,
-                    "message": "All fields are required"
-                }
-            )
+            return res.status(400).send("All fields are required")
+            
         }
         let user = await User.findOne({
             where:{
@@ -59,16 +55,10 @@ module.exports = {
             } 
         })
         if (!user){
-            return res.status(400).json({
-                "success": false,
-                "message": "User not found"
-            })
+            return res.status(400).send("user not found")
         }
         if (user.disabledAccount){
-            return res.status(400).json({
-                "success": false,
-                "message": "Account currently disabled"
-            })
+            return res.status(400).json("Account currently disabled")
         }else{
             const passwordMatch = await bcrypt.compare(password, user.password);
             if (passwordMatch){
@@ -81,7 +71,7 @@ module.exports = {
                 return res.status(200).json({token, user})
             }
             else{
-                return res.status(400).json({message: "incorrect password"})
+                return res.status(400).send("Incorrect password")
             }
             
         }

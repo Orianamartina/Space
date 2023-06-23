@@ -9,7 +9,7 @@ export default function News(){
     const dispatch = useDispatch()
     const posts = useSelector((state) => state.posts)
     const [offset, setOffset] = useState(0)
-    console.log(posts)
+   
     useEffect(() => {
         dispatch(getPosts(offset))
     }, [dispatch])
@@ -33,6 +33,7 @@ export default function News(){
             {posts.map(post => {
                 return (
                     <NewsCard
+                        key = {post.id}
                         link = {post.url}
                         title = {post.title}
                         imgsrc = {post.image_url}
