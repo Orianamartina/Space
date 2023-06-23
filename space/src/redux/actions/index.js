@@ -11,7 +11,7 @@ export const getPosts = (offset) => {
 export const logInUser = (credentials) => {
     return async function (dispatch){
         let data = await axios.post(`${apiUrl}/login`, credentials)
-        return dispatch({type: LOGIN, payload: data})
+        return dispatch({type: LOGIN, payload: data.data})
     }
 }
 export const registerUser = (userInformation) => {

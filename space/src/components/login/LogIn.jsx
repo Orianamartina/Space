@@ -11,6 +11,7 @@ export default function Login () {
     const dispatch = useDispatch()
  
     const user = useSelector((state) => state.user)
+   
     const [form, setForm] = useState({
         "username": "",
         "password": ""
@@ -23,16 +24,20 @@ export default function Login () {
 
     const handleSubmit =async (e) => {
         e.preventDefault()
+
         try {
             await dispatch(logInUser(form))
             localStorage.setItem("token", JSON.stringify(user.token))
+            localStorage.setItem("user", JSON.stringify(user.user))
+      
+            console.log(user)
             if (user){
-                window.location.href = '/';
+               // window.location.href = '/';
             }
           
 
         } catch (error) {
-            setLoginStatus(error.response.message)
+            setLoginStatus(error.response)
         }
         
     
@@ -45,7 +50,7 @@ export default function Login () {
            ...form,
            [e.target.name] : e.target.value 
        });
-       console.log(form)
+   
     }
     return (
 
