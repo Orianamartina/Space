@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const { Op } = require('sequelize');
 const jwt = require ('jsonwebtoken')
 const {TOKEN_KEY} = process.env
+
 module.exports = {
 
     registerUser: async(req, res) => {
@@ -32,7 +33,7 @@ module.exports = {
                 const newUser = await User.create({
                     name, lastname, username, email, password: passwordHashed
                 })
-              
+               
                 
                 return res.status(201).json(newUser)
             }
@@ -77,14 +78,27 @@ module.exports = {
                     exp: Date.now() + 60 * 1000},
                     TOKEN_KEY
                     )
-                return res.status(200).json(token, user)
+                return res.status(200).json({token, user})
             }
             else{
                 return res.status(400).json({message: "incorrect password"})
             }
             
         }
-        
 
+    },
+
+    createPost: async(req, res) =>{
+        jwt.verify(req.token, TOKEN_KEY, (error, authData) => {
+            if (error){
+                res.sendStatus(403);
+            }
+            else{
+                res.json({
+                    "mensaje": "Post creado",
+                    authData
+                })
+            }
+        })
     }
 }
