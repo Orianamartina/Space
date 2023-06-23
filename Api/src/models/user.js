@@ -40,6 +40,10 @@ module.exports = (sequelize) => {
         token:{
             type: DataTypes.STRING,
     
+        },
+        disabledAccount: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
 
     },{timestamps: false})
