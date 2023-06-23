@@ -10,7 +10,8 @@ export default function Login () {
 
     const dispatch = useDispatch()
  
-    const user = useSelector((state) => state.user)
+    const user = useSelector((state) => state.user) 
+    const storageUser =  localStorage.getItem("user")
    
     const [form, setForm] = useState({
         "username": "",
@@ -51,7 +52,7 @@ export default function Login () {
     return (
 
         <div>
-            {user.token? setUser(user):(
+            {user.token ? setUser(user):storageUser? window.location.href = '/':(
                 <form id="Login" onSubmit={handleSubmit}>    
                 <div>
                     <label>Username</label>
