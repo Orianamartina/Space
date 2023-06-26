@@ -21,7 +21,10 @@ const reducer = (state = initialState, action) => {
                 user: action.payload
             }  
         case REGISTER:
-            return  "hola"
+            return {
+                ...state,
+                user: action.payload
+            }
                
             
         default:
