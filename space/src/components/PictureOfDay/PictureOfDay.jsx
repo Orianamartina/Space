@@ -14,7 +14,7 @@ const PictureOfDay = () => {
         try {
             dispatch(getPictureOfDay())
         } catch (error) {
-            setError(error.response)
+            setError(error.response.data)
         }
         
     }, [dispatch])
