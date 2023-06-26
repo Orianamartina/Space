@@ -21,13 +21,6 @@ function App() {
         <Route path = "/register" element={<Suspense fallback={<div>Loading...</div>}><Register/></Suspense>}/>
         <Route path='/login' element={<Suspense fallback={<div>Loading...</div>}><Login /></Suspense>} />
         <Route path ="pic-of-day" element={<Suspense fallback={<div>Loading...</div>}><PictureOfDay/></Suspense>} />
-        <Route path = "/admin" element ={
-        
-                          
-                <Suspense>
-                    <Admin />
-                </Suspense>
-        }/>
         <Route path = "*"/>
             // page not found 
         
