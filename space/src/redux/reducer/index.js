@@ -1,9 +1,9 @@
-import { GETPOSTS, LOGIN, REGISTER } from "../actiontypes"
+import { GETPICOFDAY, GETPOSTS, LOGIN, REGISTER } from "../actiontypes"
 
 const initialState = {
     posts: [],
-    user: {}
-
+    user: {},
+    picOfDay: ""
 }
 
 const reducer = (state = initialState, action) => {
@@ -26,7 +26,11 @@ const reducer = (state = initialState, action) => {
                 user: action.payload
             }
                
-            
+        case GETPICOFDAY:
+            return{
+                ...state,
+                picOfDay: action.payload
+            }
         default:
             return state
 

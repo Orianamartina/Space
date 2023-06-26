@@ -30,7 +30,7 @@ export default function Login () {
         } catch (error) {
             setLoginStatus(error.response.data)
         }
-     }    
+    }    
     
         
     const setUser = (user) => {

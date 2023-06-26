@@ -24,8 +24,8 @@ export default function NavBar () {
         <div>
 
             <Link to="/marsrover"><button>Mars Rover images</button></Link>
-            <Link to="/seeyoufromspace"><button>See your location from space </button></Link>
-            <Link to= "/pictureofday"><button>Nasa Picture of the dat</button></Link>
+            <Link to="/see-you-from-space"><button>See your location from space </button></Link>
+            <Link to= "/pic-of-day"><button>Nasa Picture of the day</button></Link>
             <Link to="/news"><button>Spaceflight news</button></Link>
             {user? <Link><button onClick={logOutUser}>Log Out</button></Link>:<Link to="/login"><button>Log In</button></Link> }
         </div>

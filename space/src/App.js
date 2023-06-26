@@ -12,7 +12,7 @@ import Register from './components/register/Register';
 import Login from './components/login/LogIn';
 
 
-
+const PictureOfDay = lazy(() => import('./components/PictureOfDay/PictureOfDay'))
 const Admin = lazy(() => import('./components/admin/Admin'))
 function App() {
   const location = useLocation();
@@ -24,8 +24,9 @@ function App() {
         <Route exact path= "/news" element={<News/>}/>
         <Route path = "/register" element={<Register/>}/>
         <Route path='/login' element={<Login />} />
+        <Route path ="pic-of-day" element={<Suspense fallback={<div>Loading...</div>}><PictureOfDay/></Suspense>} />
         <Route path = "/admin" element ={
-  
+        
                           
                 <Suspense>
                     <Admin />

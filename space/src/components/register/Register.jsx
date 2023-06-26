@@ -4,13 +4,17 @@ import { registerUser } from "../../redux/actions"
 import { useDispatch} from "react-redux"
 
 export default function Register () {
-
+    const [form, setForm] = useState({})
+    const [error, setError] = useState({"completed": false})
+    const [registerStatus, setRegisterStatus] = useState()
+   
     const dispatch = useDispatch()
     const validateForm = (form) => {
+        
         const errors = {}
         const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
   
-        if (!form.name || !form.lastname || !form.email || !form.username || !form.password || !form.repeatPassword){
+        if (!form.name || !form.lastname || !form.email || !form.username || !form.password || !form.repeatpassword){
             errors.completed = "All fields are required"
         }
         if (!emailRegex.test(form.email)) {
@@ -33,17 +37,16 @@ export default function Register () {
         }
         
         if (!digitRegex.test(form.password)) {
-            setError ({...error, password: 'Password must contain at least one digit'})
+            errors.password = "Password must contain at least one digit"
         
         }
-        
+        if(form.password != form.repeatpassword){
+            errors.repeatpassword = 'Passwords must be identical'
+        }
+        return errors
     
     }
 
-    const [form, setForm] = useState({
-     
-    })
-    const [error, setError] = useState({"completed": "false"})
     const handleChange = (e) => {
         setForm({
            ...form,
@@ -51,14 +54,19 @@ export default function Register () {
        });
        console.log(form)
        
-   }
+    }
     const hasNoErrors = Object.entries(error).length === 0
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault()
         setError(validateForm(form))
-        console.log(error)
         if (hasNoErrors){
-             dispatch(registerUser(form))
+            try {
+                await dispatch(registerUser(form));
+                window.location.href = '/';
+            } catch (error) {
+                await setRegisterStatus(error.response.data.message);
+            }
+             
         }
         
     }
@@ -86,7 +94,8 @@ export default function Register () {
                     <input type="password" placeholder="Repeat Password" name="repeatpassword" onChange={(e) => handleChange(e)} />
                 </div>
                 <button type="submit" form="register">Register</button>
-
+                <h3>{Object.entries(error)[0]? Object.entries(error)[0][1]: registerStatus? registerStatus: " "}</h3>
+                
             </form>
         </div>
 

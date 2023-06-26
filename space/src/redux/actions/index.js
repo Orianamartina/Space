@@ -1,7 +1,10 @@
-import { GETPOSTS, LOGIN, REGISTER } from "../actiontypes";
+import { GETPICOFDAY, GETPOSTS, LOGIN, REGISTER } from "../actiontypes";
 import axios from "axios";
 const apiUrl = "http://localhost:3001";
 
+
+ 
+ 
 export const getPosts = (offset) => {
     return async function(dispatch){
         let data = await axios.get(`${apiUrl}/posts/?limit=10&offset=${offset}`)
@@ -18,5 +21,11 @@ export const registerUser = (userInformation) => {
     return async function(dispatch){
         let data = await axios.post(`${apiUrl}/register`, userInformation)
         return dispatch({type: REGISTER, payload: data.data})
+    }
+}
+export const getPictureOfDay = () => {
+    return async function(dispatch){
+        let data= await axios.get(`${apiUrl}/picofday`)
+        return dispatch({type:GETPICOFDAY, payload: data.data})
     }
 }
