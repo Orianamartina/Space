@@ -13,8 +13,12 @@ export default function NavBar () {
         user = null
       }
   
-
-    
+      const logOutUser = () => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token")
+        window.location.href = '/';
+      }
+      
     return (
 
         <div>
@@ -23,11 +27,8 @@ export default function NavBar () {
             <Link to="/seeyoufromspace"><button>See your location from space </button></Link>
             <Link to= "/pictureofday"><button>Nasa Picture of the dat</button></Link>
             <Link to="/news"><button>Spaceflight news</button></Link>
+            {user? <Link><button onClick={logOutUser}>Log Out</button></Link>:<Link to="/login"><button>Log In</button></Link> }
         </div>
     )
-
-
-
-
 
 }
