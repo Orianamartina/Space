@@ -17,7 +17,7 @@ const PictureOfDay = () => {
             setError(error.response)
         }
         
-    })
+    }, [dispatch])
     return(
         <div>
             <h1>{pic.date}</h1>
