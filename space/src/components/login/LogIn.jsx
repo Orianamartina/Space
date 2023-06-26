@@ -1,8 +1,6 @@
 
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-
-
 import { logInUser } from "../../redux/actions"
 
 
@@ -35,11 +33,12 @@ export default function Login () {
      }    
     
         
-     const setUser = (user) => {
+    const setUser = (user) => {
         localStorage.setItem("token", JSON.stringify(user.token))
+        //user data should be filtered bc includes password and other data not useful
         localStorage.setItem("user", JSON.stringify(user.user))
         window.location.href = '/';
-     }
+    }
        
    
     const handleChange = (e) => {
@@ -52,7 +51,9 @@ export default function Login () {
     return (
 
         <div>
-            {user.token ? setUser(user):storageUser? window.location.href = '/':(
+            
+            {//hardcoded?
+            user.token ? setUser(user):storageUser? window.location.href = '/':(
                 <form id="Login" onSubmit={handleSubmit}>    
                 <div>
                     <label>Username</label>
