@@ -25,13 +25,12 @@ function App() {
         <Route path = "/register" element={<Register/>}/>
         <Route path='/login' element={<Login />} />
         <Route path = "/admin" element ={
-            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => Navigate("/") }>
+  
                           
                 <Suspense>
                     <Admin />
                 </Suspense>
-            </ErrorBoundary > } />
-       
+        }/>
         <Route path = "*"/>
             // page not found 
         
